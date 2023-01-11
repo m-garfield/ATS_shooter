@@ -31,7 +31,7 @@ def input_name():
 
         surname = input('Введите фамилию стрелка --> ')
         name = input('Введите имя стрелка --> ')
-        answer= input(f"Фамилия Имя стрелка {surname} {name}? Верно Да/Нет --> ")
+        answer= input(f"Фамилия Имя стрелка  {surname} {name}? Верно Да/Нет --> ")
         if answer == "Да":
             break
     return [surname, name]
