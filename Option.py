@@ -1,3 +1,4 @@
+import pandas
 
 def input_option ():
     while True:

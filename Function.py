@@ -37,7 +37,8 @@ def input_name():
     return [surname, name]
 def foul_procedur (foul_procedure):
     count_foul_procedur = int(input('Введите количество процедурных штрафов у стрелка -->  '))
-    time_all_foul_procedur = int(count_foul_procedur) * int(foul_procedur)
+    x=0
+    time_all_foul_procedur = count_foul_procedur * int(foul_procedure)
     return time_all_foul_procedur
 
 def all_time_foul_targets_zone(count_target, count_shoot):
@@ -45,10 +46,16 @@ def all_time_foul_targets_zone(count_target, count_shoot):
     x = count_target
     while x > 0:
         while True:
-            str_input = input(f'Введите попадания в мишень {count_target - x + 1}')
+            str_input = input(f'Введите попадания в мишень {count_target - x + 1} --> ')
             rez = chek_input(count_shoot, str_input)
             if rez != False:
                 all_time_foul_targets_zone = all_time_foul_targets_zone + rez
                 break
         x = x-1
     return all_time_foul_targets_zone
+##di = {
+    #return"кг":[1,2,3],
+   # "слова":["сала","мало","мама"]
+    # }
+##z = pd.DataFrame(di)
+#z.to_excel("file_name.xlsx")
