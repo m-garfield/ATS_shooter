@@ -15,7 +15,7 @@ def chek_input(count_shoot, str_input, foul_a=0, foul_b = 1, foul_w = 5, foul_0 
                 sum_foul_target_zone = sum_foul_target_zone + foul_0
             else:
                 return False
-        return sum_foul_target_zone
+        return str(sum_foul_target_zone)
 
 def calculation_of_result_shooter (surname, name, time_all_foul_procedur, sum_foul_target_zone):
     dect_of_rezult = {}
@@ -31,7 +31,7 @@ def input_name():
 
         surname = input('Введите фамилию стрелка --> ')
         name = input('Введите имя стрелка --> ')
-        answer= input(f"Фамилия Имя стрелка{surname} {name}? Верно Да/Нет --> ")
+        answer= input(f"Фамилия Имя стрелка {surname} {name}? Верно Да/Нет --> ")
         if answer == "Да":
             break
     return [surname, name]
@@ -49,9 +49,10 @@ def all_time_foul_targets_zone(count_target, count_shoot):
             str_input = input(f'Введите попадания в мишень {count_target - x + 1} --> ')
             rez = chek_input(count_shoot, str_input)
             if rez != False:
-                all_time_foul_targets_zone = all_time_foul_targets_zone + rez
+                all_time_foul_targets_zone = all_time_foul_targets_zone + int(rez)
                 break
         x = x-1
+
     return all_time_foul_targets_zone
 ##di = {
     #return"кг":[1,2,3],
