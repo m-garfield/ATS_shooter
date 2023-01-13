@@ -1,4 +1,4 @@
-
+import openpyxl
 def chek_input(count_shoot, str_input, foul_a=0, foul_b = 1, foul_w = 5, foul_0 = 10):
         sum_foul_target_zone = 0
         x = len(str_input)
@@ -17,13 +17,16 @@ def chek_input(count_shoot, str_input, foul_a=0, foul_b = 1, foul_w = 5, foul_0 
                 return False
         return str(sum_foul_target_zone)
 
-def calculation_of_result_shooter (surname, name, time_all_foul_procedur, sum_foul_target_zone):
+def calculation_of_result_shooter (surname, name, time_all_foul_procedur, sum_foul_target_zone, time_distantion):
     dect_of_rezult = {}
     dect_of_rezult['surname'] = surname
     dect_of_rezult['name'] = name
     dect_of_rezult['sum_foul_target_zone'] = sum_foul_target_zone
     dect_of_rezult['time_all_foul_procedur'] = time_all_foul_procedur
-    dect_of_rezult['time_all_foul'] =  int(dect_of_rezult['sum_foul_target_zone']) + int(dect_of_rezult['time_all_foul_procedur'])
+
+    time_all_foul=  int(dect_of_rezult['sum_foul_target_zone']) + int(dect_of_rezult['time_all_foul_procedur'])
+    dect_of_rezult['time_all_foul'] = time_all_foul
+    dect_of_rezult['time_of_rezult'] = time_all_foul + time_distantion
     return  dect_of_rezult
 
 def input_name():
@@ -31,10 +34,11 @@ def input_name():
 
         surname = input('Введите фамилию стрелка --> ')
         name = input('Введите имя стрелка --> ')
-        answer= input(f"Фамилия Имя стрелка  {surname} {name}? Верно Да/Нет --> ")
+        time_distantion = input('Введите время прохождения дистанции  --> ')
+        answer= input(f"Фамилия Имя стрелка  {surname} {name} прошел за {time_distantion}? Верно Да/Нет --> ")
         if answer == "Да":
             break
-    return [surname, name]
+    return [surname, name, time_distantion]
 def foul_procedur (foul_procedure):
     count_foul_procedur = int(input('Введите количество процедурных штрафов у стрелка -->  '))
     x=0
@@ -54,9 +58,25 @@ def all_time_foul_targets_zone(count_target, count_shoot):
         x = x-1
 
     return all_time_foul_targets_zone
-##di = {
-    #return"кг":[1,2,3],
-   # "слова":["сала","мало","мама"]
-    # }
-##z = pd.DataFrame(di)
-#z.to_excel("file_name.xlsx")
+def load_excel(list_rez):
+    book = openpyxl.Workbook()
+    sheet = book.active
+    sheet['A1'] = 'Фамилия'
+    sheet['B1'] = "Имя"
+    sheet['C1'] = "Штраф за попадания в мишени"
+    sheet['D1'] = "Процедурные штрафы"
+    sheet['E1'] = "Общее время прохождения дистанции"
+    sheet['E1'] = "Общее время прохождения дистанции"
+    row = 2
+    for rez_string in list_rez:
+        sheet[row][0].value = rez_string['surname']
+        sheet[row][1].value = rez_string['name']
+        sheet[row][2].value = rez_string['sum_foul_target_zone']
+        sheet[row][3].value = rez_string['time_all_foul_procedur']
+        sheet[row][4].value = rez_string['time_of_rezult']
+        row += 1
+    book.save("Результаты соревнования.xlsx ")
+
+    book.close()
+
+
