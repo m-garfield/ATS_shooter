@@ -11,6 +11,7 @@ while True:
     list_rez.append(Function.calculation_of_result_shooter(surname_name[0], surname_name[1], surname_name[2], time_all_foul_procedur, sum_foul_target_zone))
     answer_continion = input("Продолжаем? Да/Нет -->  ")
     if answer_continion == "Нет":
+        list_rez = Function.sort_of_lieder(list_rez)
         Function.load_excel(list_rez)
         break
 
